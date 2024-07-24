@@ -1,0 +1,40 @@
+<template>
+    <lightning-card title="Employee Profile">
+        <div class="slds-m-around_medium">
+            <template if:true={employee}>
+                <div class="slds-grid slds-wrap profile-container">
+                    <div class="slds-col slds-size_1-of-3 slds-p-around_medium profile-picture-container">
+                        <div class="slds-align_absolute-center">
+                            <img src={profilePicture} alt="profile_pp.jpg" class="profile-picture" />
+                            <div class="slds-text-heading_medium slds-m-top_medium">{employee.Name}</div>
+                            <div class="slds-text-body_small slds-text-color_weak">@{employee.Email__c}</div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_2-of-3 slds-p-around_medium profile-details-container">
+                        <template if:true={isEditMode}>
+                            <lightning-record-form record-id={recordId} object-api-name={objectApiName}
+                                fields={editFields} mode="edit" onsuccess={handleSuccess} onerror={handleError}
+                                onsubmit={handleSubmit} oncancel={handleCancel}>
+                                <div class="slds-m-top_medium">
+                                    <button onclick={handleSubmit} class="slds-button slds-button_brand">Save</button>
+                                    <button onclick={handleSubmit}
+                                        class="slds-button slds-button_neutral">Cancel</button>
+                                </div>
+                            </lightning-record-form>
+                        </template>
+                        <template if:false={isEditMode}>
+                            <lightning-record-form record-id={recordId} object-api-name={objectApiName}
+                                fields={readOnlyFields} mode="readonly"></lightning-record-form>
+                            <div class="slds-m-top_medium">
+                                <button onclick={toggleEditMode} class="slds-button slds-button_neutral">Edit</button>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </template>
+            <template if:true={error}>
+                <p>{error}</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

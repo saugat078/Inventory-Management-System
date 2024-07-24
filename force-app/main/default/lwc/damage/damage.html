@@ -1,0 +1,54 @@
+<template>
+    <lightning-card title="Damage Report" icon-name="custom:custom14">
+        <div class="slds-p-around_medium">
+            <lightning-combobox 
+                name="inventoryItem"
+                label="Inventory Item"
+                value={selectedInventoryItem}
+                options={inventoryItems}
+                onchange={handleInventoryChange}>
+            </lightning-combobox>
+            <template if:true={errorMessages.inventoryItem}>
+                <div class="slds-text-color_error slds-m-top_x-small">{errorMessages.inventoryItem}</div>
+            </template>
+
+            <lightning-combobox 
+                name="condition"
+                label="Condition"
+                value={selectedCondition}
+                options={conditionOptions}
+                onchange={handleConditionChange}>
+            </lightning-combobox>
+            <template if:true={errorMessages.condition}>
+                <div class="slds-text-color_error slds-m-top_x-small">{errorMessages.condition}</div>
+            </template>
+            <lightning-input 
+                type="text"
+                name="description"
+                label="Description"
+                value={description}
+                placeholder="Describe the damages occured"
+                onchange={handleDescriptionChange}>
+            </lightning-input>
+            <template if:true={errorMessages.description}>
+                <div class="slds-text-color_error slds-m-top_x-small">{errorMessages.description}</div>
+            </template>
+            <div class="upload">
+                <p>Upload Damaged Inventory Image</p>
+            <lightning-input-rich-text
+                type="text"
+                name="image"
+                label="Image"
+                placeholder="Only include damage product image here"
+                value={image}
+                onchange={handleImageChange}>
+            </lightning-input-rich-text>
+            </div>
+            <template if:true={errorMessages.image}>
+                <div class="slds-text-color_error slds-m-top_x-small">{errorMessages.image}</div>
+            </template>
+
+            <lightning-button class='button' variant="brand" label="Save" onclick={handleSave}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,13 @@
+<aura:component controller="DamageReportController">
+    <aura:attribute name="damageReports" type="Damage_Report__c[]" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <lightning:datatable
+        keyField="Id"
+        data="{!v.damageReports}"
+        columns="{!v.columns}"
+        hideCheckboxColumn="true"
+        onrowaction="{!c.handleRowAction}"
+        />
+</aura:component>
