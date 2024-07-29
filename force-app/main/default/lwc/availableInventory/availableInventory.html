@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Available Inventories">
+        <template if:true={availableInventories}>
+            <div class="slds-p-around_small">
+                <lightning-datatable
+                    key-field="Id"
+                    data={availableInventories}
+                    columns={columns}
+                    hide-checkbox-column="true">
+                </lightning-datatable>
+            </div>
+        </template>
+        <template if:false={availableInventories}>
+            <p>No available inventories to display.</p>
+        </template>
+    </lightning-card>
+</template>

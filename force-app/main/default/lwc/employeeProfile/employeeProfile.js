@@ -23,6 +23,7 @@ export default class EmployeeProfile extends LightningElement {
     profilePicture;
 
     @wire(getEmployeeInfo)
+    
     wiredEmployeeInfo(result) {
         this.wiredEmployeeResult = result;//object to refresh after update of profile picture...
         const { data, error } = result;
@@ -43,7 +44,7 @@ export default class EmployeeProfile extends LightningElement {
             console.error('Error fetching employee info:', error);
         }
     }
-
+    
     extractProfilePictureUrl() {
         const profilePictureHtml = this.employee.Profile_Picture__c;
         if (profilePictureHtml) {
@@ -68,21 +69,11 @@ export default class EmployeeProfile extends LightningElement {
             this.extractProfilePictureUrl();
         });
     }
-
-    handleError(event) {
-        const toastEvent = new ShowToastEvent({
-            title: 'Error',
-            message: 'Error updating employee record: ' + event.detail.message,
-            variant: 'error'
-        });
-        this.dispatchEvent(toastEvent);
-        this.isEditMode = false;
-    }
-
     handleSubmit(event) {
         event.preventDefault();
         const fields = event.detail.fields;
         this.template.querySelector('lightning-record-form').submit(fields);
+
     }
 
     handleCancel() {

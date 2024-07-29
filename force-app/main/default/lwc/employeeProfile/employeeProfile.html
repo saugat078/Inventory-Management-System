@@ -13,7 +13,7 @@
                     <div class="slds-col slds-size_2-of-3 slds-p-around_medium profile-details-container">
                         <template if:true={isEditMode}>
                             <lightning-record-form record-id={recordId} object-api-name={objectApiName}
-                                fields={editFields} mode="edit" onsuccess={handleSuccess} onerror={handleError}
+                                fields={editFields} mode="edit" onsuccess={handleSuccess} 
                                 onsubmit={handleSubmit} oncancel={handleCancel}>
                                 <div class="slds-m-top_medium">
                                     <button onclick={handleSubmit} class="slds-button slds-button_brand">Save</button>
